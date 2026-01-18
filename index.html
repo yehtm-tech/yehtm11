@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <?!= include('Stylesheet'); ?>
+  </head>
+  <body>
+    
+    <header class="app-header">
+      <div class="header-content">
+        <h1>北投生態 <span class="badge">士林官邸</span></h1>
+        <p>心靈饗宴．自主學習探險</p>
+      </div>
+    </header>
+
+    <main id="main-container">
+      
+      <!-- 頁面 1: 行程 -->
+      <section id="page-home" class="active-page">
+        <div class="card info-card">
+          <h2>📅 活動資訊</h2>
+          <p><strong>日期：</strong>2026年1月30日</p>
+          <p><strong>時間：</strong>09:00 - 15:00</p>
+          <p><strong>組員：</strong>納韃、黃奕禎、李芮希、黃謐、蔡欣伶</p>
+          <div class="weather-hint">☁️ 記得攜帶：雨具、悠遊卡、行動電源</div>
+        </div>
+
+        <h3>🚩 行程規劃</h3>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="time">09:00</div>
+            <div class="content">
+              <h4>出發移動</h4>
+              <p>科教館 ➔ 捷運士林站 ➔ 新北投站</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">10:00</div>
+            <div class="content">
+              <h4>♨️ 地熱谷 (科學)</h4>
+              <p>觀察地質景觀、硫磺泉特性、生態觀察</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">10:40</div>
+            <div class="content">
+              <h4>🏛️ 北投溫泉博物館 (藝術)</h4>
+              <p>參觀大浴場、榻榻米大廳、日式建築</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">11:15</div>
+            <div class="content">
+              <h4>📚 北投圖書館 & 手湯</h4>
+              <p>全台首座綠建築、體驗星川亭手湯</p>
+            </div>
+          </div>
+           <div class="timeline-item">
+            <div class="time">12:00</div>
+            <div class="content">
+              <h4>🍱 午餐時間</h4>
+              <p>北投附近用餐 (預算需自行控管)</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">13:30</div>
+            <div class="content">
+              <h4>🌸 士林官邸 (人文)</h4>
+              <p>園藝造景、歷史背景、環境保護</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="time">14:10</div>
+            <div class="content">
+              <h4>返程</h4>
+              <p>捷運士林站 ➔ 返回科教館</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 頁面 2: 任務攻略 (依據 PDF 設計) -->
+      <section id="page-missions" style="display:none;">
+        
+        <div class="card" style="background:#e8f5e9; border:1px solid #c8e6c9;">
+          <div class="form-group">
+            <label>👤 我是：</label>
+            <select id="globalUserName" onchange="updateMissionUserNames(this.value)" style="background:white;">
+              <option value="" disabled selected>選擇你的名字...</option>
+              <option value="納韃">納韃</option>
+              <option value="黃奕禎">黃奕禎</option>
+              <option value="李芮希">李芮希</option>
+              <option value="黃謐">黃謐</option>
+              <option value="蔡欣伶">蔡欣伶</option>
+              <option value="老師">老師</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 任務一：科學 -->
+        <details class="mission-card">
+          <summary>
+            <div class="mission-title">🧪 任務一：科學 (地熱谷)</div>
+            <div class="mission-status">大地能量與熱能探索</div>
+          </summary>
+          <div class="mission-content">
+            <form onsubmit="handleMissionSubmit(event, '科學任務')">
+              <input type="hidden" name="missionId" value="科學任務">
+              <input type="hidden" name="missionUserName" class="hiddenUserName">
+              
+              <div class="q-block">
+                <label>1. 原理大解密：描述地熱谷泉水的顏色及味道，並寫出為什麼會被煙霧繚繞?</label>
+                <textarea name="q1_thermal_valley" rows="3" placeholder="顏色/味道/煙霧原因..."></textarea>
+              </div>
+              <div class="q-block">
+                <label>2. 生活連結：在「星川亭」體驗手湯時，熱能是透過何種方式傳遞到皮膚 (傳導/對流/輻射)?</label>
+                <input type="text" name="q2_heat_transfer" placeholder="輸入答案...">
+              </div>
+              <button type="submit" class="btn-primary">提交科學任務</button>
+            </form>
+          </div>
+        </details>
+
+        <!-- 任務二：藝術 -->
+        <details class="mission-card">
+          <summary>
+            <div class="mission-title">🎨 任務二：藝術 (博物館/圖書館)</div>
+            <div class="mission-status">世界之美大發現</div>
+          </summary>
+          <div class="mission-content">
+            <form onsubmit="handleMissionSubmit(event, '藝術任務')">
+              <input type="hidden" name="missionId" value="藝術任務">
+              <input type="hidden" name="missionUserName" class="hiddenUserName">
+              
+              <div class="q-block">
+                <label>1. 空間美學：溫泉博物館大浴池的設計風格，帶給你什麼視覺感受 (例如：嚴肅、優雅)?</label>
+                <input type="text" name="q1_bath_style" placeholder="輸入感受...">
+              </div>
+              <div class="q-block">
+                <label>2. 綠建築藝術：北投圖書館被譽為世界最美圖書館之一，你覺得它最美的原因是什麼?</label>
+                <textarea name="q2_green_building" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn-primary">提交藝術任務</button>
+            </form>
+          </div>
+        </details>
+
+        <!-- 任務三：人文 -->
+        <details class="mission-card">
+          <summary>
+            <div class="mission-title">🌸 任務三：人文 (士林官邸)</div>
+            <div class="mission-status">花花世界</div>
+          </summary>
+          <div class="mission-content">
+            <form onsubmit="handleMissionSubmit(event, '人文任務')">
+              <input type="hidden" name="missionId" value="人文任務">
+              <input type="hidden" name="missionUserName" class="hiddenUserName">
+              
+              <div class="q-block">
+                <label>1. 園藝與展演：觀察園區植物佈置，這些景色是大自然最真實的景色，還是經過刻意修剪?</label>
+                <input type="text" name="q1_gardening">
+              </div>
+              <div class="q-block">
+                <label>2. 群眾心理學：觀察什麼樣的景物最常讓觀光客停下腳步拍照?</label>
+                <textarea name="q2_crowd" rows="2"></textarea>
+              </div>
+              <button type="submit" class="btn-primary">提交人文任務</button>
+            </form>
+          </div>
+        </details>
+        
+        <!-- 任務總結與反思 -->
+        <details class="mission-card">
+          <summary>
+            <div class="mission-title">📝 總結與反思</div>
+            <div class="mission-status">活動後填寫</div>
+          </summary>
+          <div class="mission-content">
+            <form onsubmit="handleMissionSubmit(event, '反思回饋')">
+              <input type="hidden" name="missionId" value="反思回饋">
+              <input type="hidden" name="missionUserName" class="hiddenUserName">
+              
+              <div class="q-block">
+                <label>印象最深刻的一個點或過程是什麼？</label>
+                <textarea name="reflection_impressive" rows="3"></textarea>
+              </div>
+               <div class="q-block">
+                <label>挑戰自主：覺得「自己規劃、找路、控管預算」最困難的是什麼？</label>
+                <textarea name="reflection_challenge" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn-primary">提交反思心得</button>
+            </form>
+          </div>
+        </details>
+
+      </section>
+
+      <!-- 頁面 3: 錢包 (更新預算) -->
+      <section id="page-wallet" style="display:none;">
+        <div class="card balance-card">
+          <h3>💰 個人預算</h3>
+          <div class="total-amount">NT$ 400</div>
+          <p style="font-size:12px; opacity:0.8;">含交通50、餐費250、雜支60</p>
+        </div>
+
+        <div class="card form-card">
+          <h3>✏️ 新增支出</h3>
+          <form id="expenseForm">
+            <div class="form-group">
+              <label>姓名</label>
+              <select name="userName" required>
+                <option value="" disabled selected>請選擇...</option>
+                <option value="納韃">納韃</option>
+                <option value="黃奕禎">黃奕禎</option>
+                <option value="李芮希">李芮希</option>
+                <option value="黃謐">黃謐</option>
+                <option value="蔡欣伶">蔡欣伶</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>項目名稱</label>
+              <input type="text" name="itemName" placeholder="例如：捷運、午餐" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>金額</label>
+                <input type="number" name="amount" placeholder="0" required>
+              </div>
+              <div class="form-group">
+                <label>類別</label>
+                <select name="category" required>
+                  <option value="交通">交通</option>
+                  <option value="伙食">伙食</option>
+                  <option value="門票">門票</option>
+                  <option value="雜支">雜支</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" class="btn-primary" onclick="submitExpense()">記上一筆</button>
+          </form>
+        </div>
+
+        <h3>📝 支出明細</h3>
+        <div id="expenseList" class="list-container">
+          <p class="loading-text">載入中...</p>
+        </div>
+      </section>
+
+      <!-- 頁面 4: 照片相簿 -->
+      <section id="page-gallery" style="display:none;">
+        <div class="card upload-card">
+          <h3>📷 北投印象</h3>
+          <p style="font-size:12px; color:#666; margin-bottom:15px;">上傳地熱谷、博物館、士林官邸的美照。</p>
+          
+          <div class="form-group">
+            <label>攝影師</label>
+            <select id="photoUser">
+              <option value="" disabled selected>請選擇...</option>
+              <option value="納韃">納韃</option>
+              <option value="黃奕禎">黃奕禎</option>
+              <option value="李芮希">李芮希</option>
+              <option value="黃謐">黃謐</option>
+              <option value="蔡欣伶">蔡欣伶</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>照片描述</label>
+            <input type="text" id="photoDesc" placeholder="說明這張照片...">
+          </div>
+
+          <div class="file-upload-wrapper">
+            <input type="file" id="photoInput" accept="image/*" style="display:none;" onchange="previewPhoto()">
+            <button class="btn-secondary" onclick="document.getElementById('photoInput').click()">
+              <span class="material-icons" style="vertical-align:middle;">add_photo_alternate</span> 選擇照片
+            </button>
+            <div id="file-name-display" style="margin-top:10px; font-size:12px; color:#666;"></div>
+          </div>
+
+          <button class="btn-primary" onclick="startUpload()" style="margin-top:20px;">開始上傳</button>
+          
+          <div id="upload-status" style="margin-top:15px; display:none;">
+            <div class="spinner"></div>
+            <p>照片上傳中...</p>
+          </div>
+        </div>
+
+        <h3>🎞️ 最新動態</h3>
+        <div id="photoList" class="list-container"></div>
+      </section>
+
+    </main>
+
+    <!-- 底部導覽列 -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" onclick="switchPage('home')">
+        <span class="material-icons">map</span>
+        <span>行程</span>
+      </button>
+      <button class="nav-item" onclick="switchPage('missions')">
+        <span class="material-icons">quiz</span>
+        <span>任務</span>
+      </button>
+      <button class="nav-item" onclick="switchPage('wallet')">
+        <span class="material-icons">account_balance_wallet</span>
+        <span>記帳</span>
+      </button>
+      <button class="nav-item" onclick="switchPage('gallery')">
+        <span class="material-icons">collections</span>
+        <span>相簿</span>
+      </button>
+    </nav>
+
+    <?!= include('JavaScript'); ?>
+  </body>
+</html>
